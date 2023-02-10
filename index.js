@@ -8,23 +8,24 @@ const fs = require('fs');
 const generateReadme = ({title, description, installation, usage, licence, contributing, tests, github, email}) =>
 `README.md
 # ${title}!
-![Github licence](https://img.shields.io/badge/license-MIT-blue.svg)
+![Github licence](https://img.shields.io/badge/license-${licence}-blue.svg)
 
-## Description
+## Description:
 ${description}
 
-## Table of Contents:
-* [Installation] (Installation)
+## Table of Contents:<br />
 
-* [Usage] (Usage)
+- [Installation](#installation)<br />
 
-* [Licence] (License)
+- [Usage](#usage)<br />
 
-* [Contributing] (Contributing)
+- [Licence](#license)<br />
 
-* [Tests] (tests)
+- [Contributing](#contributing)<br />
 
-* [Questions] (Questions)
+- [Testing](#testing)<br />
+
+- [Questions](#questions)<br />
 
 ## Installation:
 To install the necessary dependancies please run the following command:
@@ -36,7 +37,7 @@ ${installation}
 ${usage}
 
 ## License:
-${licence}
+This project is licensed under; ${licence}
 
 ## Contributing:
 ${contributing}
@@ -80,9 +81,9 @@ inquirer
     },
     {
         type: 'list',
-        message: 'What is your preferred method of communication?',
+        message: 'Select which Licence you wish to use:',
         name: 'licence',
-        choices: ['MIT', 'phone', 'SMS'],
+        choices: ['MIT', 'None', 'Apache_License_2.0', 'GNU_General_Public_License_v3.0', 'MIT_License', 'Boost_Software_License_1.0', 'Creative_Commons_Zero_v1.0_Universal', 'Eclipse_Public_License_2.0', 'GNU_Affero_General_Public_License_v3.0', 'GNU_General_Public_License_v2.0', 'GNU_Lesser_General_Public_License_v2.1', 'Mozilla_Public_License_2.0', 'The_Unlicense'],
     },
     {
         type: 'input',
