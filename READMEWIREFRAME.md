@@ -13,7 +13,7 @@ description
 
 * [Contributing] (#contributing)
 
-* [Tests] (#tests)
+* [Testing] (#testing)
 
 * [Questions] (#questions)
 
@@ -33,11 +33,11 @@ licence
 ## Contributing:
 contributing
 
-## Tests:
-tests
+## Testing:
+If you have any concerns and want to run a test, please run the following command:
 ```
 npm test
 ```
 
-## questions:
-questions
+## Questions:
+If you have any questions about this repo please feel free to reach out directly to me via email at [benarmstrong@live.com](mailto:benarmstrong@live.com). You can also find more of my work at [BenArmstrong81](https://github.com/BenArmstrong81).

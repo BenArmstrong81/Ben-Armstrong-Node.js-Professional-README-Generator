@@ -5,32 +5,32 @@ const fs = require('fs');
 
 
 //-------------Template for the README.md page along with creating the Array:
-const generateHtml = ({ description, tableofcontents, installation, usage, licence, contributing, tests, questions}) =>
-`# Your Next New Project!
+const generateReadme = ({title, description, installation, usage, licence, contributing, tests, github, email}) =>
+`README.md
+# ${title}!
 ![Github licence](https://img.shields.io/badge/license-MIT-blue.svg)
 
 ## Description
 ${description}
 
 ## Table of Contents:
-* [Installation] (#installation)
+* [Installation] (Installation)
 
-* [Usage] (#usage)
+* [Usage] (Usage)
 
-* [Licence] (#licence)
+* [Licence] (License)
 
-* [Contributing] (#contributing)
+* [Contributing] (Contributing)
 
-* [Tests] (#tests)
+* [Tests] (tests)
 
-* [Questions] (#questions)
+* [Questions] (Questions)
 
 ## Installation:
+To install the necessary dependancies please run the following command:
+
 ${installation}
 
-```
-`npm i`
-```
 
 ## Usage:
 ${usage}
@@ -41,19 +41,23 @@ ${licence}
 ## Contributing:
 ${contributing}
 
-## Tests:
-${tests}
-```
-`npm test`
-```
+## Testing:
+If you have any concerns and want to run a test, please run the following command:
 
-## questions:
-questions`;
+${tests}
+
+## Questions:
+If you have any questions about this repo please feel free to reach out directly to me via email at [${email}](mailto:${email}). You can also find more of my work at [${github}](https://github.com/${github}).`;
 
 
 //-------------Inquirer Form for the User to Fill Out:
 inquirer
   .prompt([
+    {
+      type: 'input',
+      message: 'Enter the Title of your project:',
+      name: 'title',
+    },
     {
       type: 'input',
       message: 'Please write your desciption of the project:',
@@ -66,7 +70,7 @@ inquirer
     },
     {
         type: 'input',
-        message: 'To install necessary dependencies, run the following command:',
+        message: 'To install necessary dependencies, run the following command: npm i',
         name: 'installation',
     },
     {
@@ -87,15 +91,23 @@ inquirer
     },
     {
         type: 'input',
-        message: 'To run tets, run the following command:',
+        message: 'To run a test please run the following command: npm test',
         name: 'tests',
     },
-
-
+    {
+      type: 'input',
+      message: 'Please enter your email address:',
+      name: 'email',
+    },
+    {
+      type: 'input',
+      message: 'Please enter your GitHub user name:',
+      name: 'github',
+     },
   ])
-//-------------Passes Data and Writes to the HTML file (note all within the Inquirer form function):
+//-------------Passes Data and Writes to the README.md file (note all within the Inquirer form function):
   .then((response) => {
-    const htmldata = generateHtml(response);
+    const htmldata = generateReadme(response);
         fs.writeFile('README.md', htmldata, (err) =>
       err ? console.log(err) : console.log('Success!')
     );
