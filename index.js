@@ -4,7 +4,7 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 
 
-//-------------Template for the README.md page along with creating the Array:
+//-------------Template for the README.md page:
 const generateReadme = ({title, description, installation, usage, licence, contributing, tests, github, email}) =>
 `README.md
 # ${title}!
@@ -29,12 +29,13 @@ ${description}
 
 ## Installation:
 To install the necessary dependancies please run the following command:
-
+\`\`\`
 ${installation}
-
+\`\`\`
 
 ## Usage:
 ${usage}
+
 
 ## License:
 This project is licensed under; ${licence}
@@ -43,9 +44,10 @@ This project is licensed under; ${licence}
 ${contributing}
 
 ## Testing:
-If you have any concerns and want to run a test, please run the following command:
-
+If you have any concerns and want to run a test, please run the following command: 
+\`\`\`
 ${tests}
+\`\`\`
 
 ## Questions:
 If you have any questions about this repo please feel free to reach out directly to me via email at [${email}](mailto:${email}). You can also find more of my work at [${github}](https://github.com/${github}).`;
@@ -70,9 +72,10 @@ inquirer
       name: 'tableofcontents',
     },
     {
-        type: 'input',
-        message: 'To install necessary dependencies, run the following command: npm i',
+        type: 'default',
+        message: 'To install necessary dependencies, run the following command:',
         name: 'installation',
+        default: 'npm i',
     },
     {
       type: 'input',
@@ -91,9 +94,10 @@ inquirer
         name: 'contributing',
     },
     {
-        type: 'input',
-        message: 'To run a test please run the following command: npm test',
+        type: 'default',
+        message: 'To run a test please run the following command:',
         name: 'tests',
+        default: 'npm test',
     },
     {
       type: 'input',
@@ -106,7 +110,7 @@ inquirer
       name: 'github',
      },
   ])
-//-------------Passes Data and Writes to the README.md file (note all within the Inquirer form function):
+//-------------Passes Data and Writes to the README.md file (note all data is acquired from within the Inquirer form function):
   .then((response) => {
     const htmldata = generateReadme(response);
         fs.writeFile('README.md', htmldata, (err) =>
